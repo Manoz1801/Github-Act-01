@@ -1,0 +1,17 @@
+name: Own-Creation-01
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Invitation
+        run: echo "Hey Manoj"
+
+      - name: Today's date
+        run: date
