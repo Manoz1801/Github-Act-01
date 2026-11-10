@@ -1,0 +1,31 @@
+
+name: GitHub Actions Artifact Demo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  artifact-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Report Directory
+        run: mkdir -p output
+
+      - name: Generate Report
+        run: |
+          echo "Welcome to GitHub Actions Artifacts" > output/report.txt
+          echo "Build Number: $GITHUB_RUN_NUMBER" >> output/report.txt
+          echo "Repository: $GITHUB_REPOSITORY" >> output/report.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-first-artifact
+          path: output/report.txt
